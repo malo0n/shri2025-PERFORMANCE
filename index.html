@@ -8,8 +8,12 @@
     <meta name="description" content="Управляйте своими устройствами с помощью Яндекс.Дом">
     <link rel="preload" as="image" fetchpriority="high" href="assets/bg@2x.webp">
     <link rel="preload" as="font" href="assets/lato.woff2" type="font/woff2" crossorigin="anonymous">
-    <script src="vendors/react-with-dom.js"></script>
+    <!-- <script defer src="vendors/react-with-dom.js"></script> -->
     <link rel="stylesheet" type="text/css" href="reset.css">
+    <link defer href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <script defer src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script defer src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
     <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   </head>
   <body>
@@ -37,7 +41,7 @@
       </div>
     </footer>
     
-<script src="vendors/babel.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
     function Header() {
         let [expanded, setExpanded] = React.useState(false);
