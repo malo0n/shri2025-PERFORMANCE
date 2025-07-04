@@ -27,13 +27,6 @@ export default defineConfig(({ mode }) => ({
   build: {
     sourcemap: true,
     manifest: true,
-    rollupOptions: {
-      output: {
-        assetFileNames: "static/[name].[hash][extname]",
-        chunkFileNames: "chunks/[name].[hash].js",
-        entryFileNames: "entries/[name].[hash].js",
-      },
-    },
     minify: "esbuild",
     outDir: "dist",
     cssCodeSplit: true,

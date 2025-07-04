@@ -62,7 +62,7 @@
     font-size: 0.8125rem;
     font-family: inherit;
     font-weight: bold;
-    background: no-repeat calc(100% - 1rem) 50% #FFD93E url(public/arrow-down.svg);
+    background: no-repeat calc(100% - 1rem) 50% #FFD93E url(../../../public/arrow-down.svg);
     appearance: none;
 }
 
@@ -114,7 +114,7 @@
     display: flex;
     gap: 0.9375rem;
     height: 20.6875rem;
-    background: no-repeat 50% 50% url(public/bg@2x.webp);
+    background: no-repeat 50% 50% url(../../../public/bg@2x.webp);
     /*background-size: cover;*/
     background-size: 1260px;
     border-radius: 1.25rem;
@@ -126,7 +126,7 @@
         gap: 1.25rem;
         height: auto;
         margin-bottom: 0.3125rem;
-        background: no-repeat 50% 50% url('public/bg-mobile@2x.webp');
+        background: no-repeat 50% 50% url('../../../public/bg-mobile@2x.webp');
     }
 }
 
@@ -230,7 +230,7 @@
 }
 
 .hero-dashboard__icon_rain {
-    background-image: url(public/cloud-drizzle.svg);
+    background-image: url(../../../public/cloud-drizzle.svg);
 }
 
 .hero-dashboard__schedule {
@@ -290,7 +290,7 @@
     right: 0;
     width: 18px;
     bottom: 10px;
-    background: no-repeat 50% 50% url(public/arrow-left.png);
+    background: no-repeat 50% 50% url(../../../public/arrow-left.png);
     transform: rotate(180deg);
     cursor: pointer;
 }
