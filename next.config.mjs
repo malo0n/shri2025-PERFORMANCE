@@ -1,0 +1,18 @@
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: 'export', // Use static export
+  basePath: '/shri2025-PERFORMANCE', // Base path for the app
+  reactStrictMode: true, // Enable React strict mode
+  experimental: {
+    optimizeCss: true, // Optimize and minify CSS
+  },
+  images: {
+    formats: ['image/avif', 'image/webp'], // Use modern image formats
+    minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days
+  },
+  poweredByHeader: false, // Remove X-Powered-By header
+  compress: true, // Enable brotli compression
+  productionBrowserSourceMaps: false, // Disable source maps in prod
+};
+ 
+export default nextConfig

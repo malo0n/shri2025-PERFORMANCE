@@ -1,3 +1,4 @@
+'use client';
 import { useRef, useState, useEffect } from "react";
 import { TABS } from "../../const";
 import { Event } from "../../components/Event/Event";
@@ -7,13 +8,13 @@ import "./Main.css";
 for (let i = 0; i < 6; ++i) {
   TABS.all.items = [...TABS.all.items, ...TABS.all.items];
 }
-const TABS_KEYS = Object.keys(TABS);
+const TABS_KEYS = Object.keys(TABS) as (keyof typeof TABS)[];
 
 
 
 export function Main() {
-  const ref = useRef(null);
-  const initedRef = useRef(false);
+  const ref = useRef<HTMLDivElement | null>(null);
+  const initedRef = useRef<boolean>(false);
   const [activeTab, setActiveTab] = useState("");
   const [hasRightScroll, setHasRightScroll] = useState(false);
 
@@ -24,27 +25,27 @@ export function Main() {
     }
   });
 
-  const onSelectInput = (event) => {
+  const onSelectInput = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setActiveTab(event.target.value);
   };
 
-  let sizes = [];
-  const onSize = (size) => {
+  let sizes: { width: number | undefined; height: number | undefined }[] = [];
+  const onSize = (size: { width: number | undefined; height: number | undefined }) => {
     sizes = [...sizes, size];
   };
 
   useEffect(() => {
-    const sumWidth = sizes.reduce((acc, item) => acc + item.width, 0);
-    const sumHeight = sizes.reduce((acc, item) => acc + item.height, 0);
+    const sumWidth = sizes.reduce((acc, item) => acc + item.width!, 0);
+    const sumHeight = sizes.reduce((acc, item) => acc + item.height!, 0);
 
-    const newHasRightScroll = sumWidth > ref.current.offsetWidth;
+    const newHasRightScroll = sumWidth > ref.current?.offsetWidth!;
     if (newHasRightScroll !== hasRightScroll) {
       setHasRightScroll(newHasRightScroll);
     }
   });
 
   const onArrowCLick = () => {
-    const scroller = ref.current.querySelector(
+    const scroller = ref.current?.querySelector(
       ".section__panel:not(.section__panel_hidden)"
     );
     if (scroller) {
@@ -174,7 +175,7 @@ export function Main() {
                 key={key}
                 role="tab"
                 aria-selected={key === activeTab ? "true" : "false"}
-                tabIndex={key === activeTab ? "0" : undefined}
+                tabIndex={key === activeTab ? 0 : undefined}
                 className={
                   "section__tab" +
                   (key === activeTab ? " section__tab_active" : "")

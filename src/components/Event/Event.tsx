@@ -1,14 +1,23 @@
 import { useRef, useEffect } from "react";
 import "./Event.css";
 
-export function Event(props) {
-  const ref = useRef(null);
+interface EventProps {
+  icon: string;
+  iconLabel: string;
+  title: string;
+  subtitle?: string;
+  slim?: boolean;
+  onSize?: (size: { width: number | undefined; height: number | undefined }) => void;
+}
+
+export function Event(props: EventProps) {
+  const ref = useRef<HTMLLIElement | null>(null);
 
   const { onSize } = props;
 
   useEffect(() => {
-    const width = ref.current.offsetWidth;
-    const height = ref.current.offsetHeight;
+    const width = ref.current?.offsetWidth;
+    const height = ref.current?.offsetHeight;
     if (onSize) {
       onSize({ width, height });
     }
