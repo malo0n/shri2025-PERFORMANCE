@@ -1,16 +1,16 @@
-'use client';
+"use client";
 import { useRef, useState, useEffect } from "react";
 import { TABS } from "../../const";
 import { Event } from "../../components/Event/Event";
 import "./Main.css";
-
+import bg from "../../../public/bg@2x.webp";
+import cloudIcon from "../../../public/cloud-drizzle.svg";
+import arrowLeft from "../../../public/arrow-left.png";
 
 for (let i = 0; i < 6; ++i) {
   TABS.all.items = [...TABS.all.items, ...TABS.all.items];
 }
 const TABS_KEYS = Object.keys(TABS) as (keyof typeof TABS)[];
-
-
 
 export function Main() {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -30,7 +30,10 @@ export function Main() {
   };
 
   let sizes: { width: number | undefined; height: number | undefined }[] = [];
-  const onSize = (size: { width: number | undefined; height: number | undefined }) => {
+  const onSize = (size: {
+    width: number | undefined;
+    height: number | undefined;
+  }) => {
     sizes = [...sizes, size];
   };
 
@@ -62,7 +65,12 @@ export function Main() {
         <h2 className="section__title section__title-header section__main-title">
           Главное
         </h2>
-        <div className="hero-dashboard">
+        <div
+          style={{
+            backgroundImage: `url(${bg.src})`,
+          }}
+          className="hero-dashboard"
+        >
           <div className="hero-dashboard__primary">
             <h3 className="hero-dashboard__title">Привет, Геннадий!</h3>
             <p className="hero-dashboard__subtitle">
@@ -84,6 +92,9 @@ export function Main() {
                   <div
                     className="hero-dashboard__icon hero-dashboard__icon_rain"
                     role="img"
+                    style={{
+                      backgroundImage: `url(${cloudIcon.src})`,
+                    }}
                     aria-label="Дождь"
                   ></div>
                 </div>
@@ -211,7 +222,13 @@ export function Main() {
             </div>
           ))}
           {hasRightScroll && (
-            <div className="section__arrow" onClick={onArrowCLick}></div>
+            <div
+              className="section__arrow"
+              style={{
+                backgroundImage: `url(${arrowLeft.src})`,
+              }}
+              onClick={onArrowCLick}
+            ></div>
           )}
         </div>
       </section>

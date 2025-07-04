@@ -1,6 +1,8 @@
 'use client';
 import { useState } from "react";
 import "./Header.css";
+import logo from "../../../public/logo.svg";
+import icon from '../../../public/icon_list_m@1x.svg'
 
 export function Header() {
   let [expanded, setExpanded] = useState(false);
@@ -16,10 +18,11 @@ export function Header() {
 
   return (
     <header className="header">
-      <a href="/" className="header__logo" aria-label="Яндекс.Дом"></a>
+      <a href="/" style={{ backgroundImage: `url(${logo.src})` }} className="header__logo" aria-label="Яндекс.Дом"></a>
       <button
         className="header__menu"
         aria-expanded={expanded ? "true" : "false"}
+        style={{ backgroundImage: `url(${icon.src})` }}
         onClick={onClick}
       >
         <span className="header__menu-text a11y-hidden">
