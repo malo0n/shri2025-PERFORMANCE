@@ -7,8 +7,14 @@ import bg from "../../../public/bg@2x.webp";
 import cloudIcon from "../../../public/cloud-drizzle.svg";
 import arrowLeft from "../../../public/arrow-left.png";
 
-for (let i = 0; i < 6; ++i) {
-  TABS.all.items = [...TABS.all.items, ...TABS.all.items];
+
+// Only double TABS.all.items once, not on every render (type-safe)
+const doubledFlag = Symbol.for('doubled');
+if (!(TABS.all as any)[doubledFlag]) {
+  for (let i = 0; i < 6; ++i) {
+    TABS.all.items = [...TABS.all.items, ...TABS.all.items];
+  }
+  (TABS.all as any)[doubledFlag] = true;
 }
 const TABS_KEYS = Object.keys(TABS) as (keyof typeof TABS)[];
 
@@ -29,26 +35,27 @@ export function Main() {
     setActiveTab(event.target.value);
   };
 
-  let sizes: { width: number | undefined; height: number | undefined }[] = [];
-  const onSize = (size: {
-    width: number | undefined;
-    height: number | undefined;
-  }) => {
-    sizes = [...sizes, size];
+
+  // UseRef for sizes to persist across renders
+  const sizes = useRef<{ width: number | undefined; height: number | undefined }[]>([]);
+  const onSize = (size: { width: number | undefined; height: number | undefined }) => {
+    sizes.current = [...sizes.current, size];
   };
 
-  useEffect(() => {
-    const sumWidth = sizes.reduce((acc, item) => acc + item.width!, 0);
-    const sumHeight = sizes.reduce((acc, item) => acc + item.height!, 0);
 
-    const newHasRightScroll = sumWidth > ref.current?.offsetWidth!;
+  useEffect(() => {
+    // Only run when activeTab or sizes change
+    const sumWidth = sizes.current.reduce((acc, item) => acc + (item.width || 0), 0);
+    // const sumHeight = sizes.current.reduce((acc, item) => acc + (item.height || 0), 0);
+    const wrapperWidth = ref.current?.offsetWidth || 0;
+    const newHasRightScroll = sumWidth > wrapperWidth;
     if (newHasRightScroll !== hasRightScroll) {
       setHasRightScroll(newHasRightScroll);
     }
-  });
+  }, [activeTab, hasRightScroll]);
 
   const onArrowCLick = () => {
-    const scroller = ref.current?.querySelector(
+    const scroller = ref.current?.querySelector<HTMLDivElement>(
       ".section__panel:not(.section__panel_hidden)"
     );
     if (scroller) {
