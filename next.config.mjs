@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export', // Use static export
-  basePath: '/shri2025-PERFORMANCE/', // Base path for the app
+  basePath: process.env.BASE_URL, // Base path for the app
+  distDir: 'out', // Output directory for static files
   reactStrictMode: true, // Enable React strict mode
   experimental: {
     optimizeCss: true, // Optimize and minify CSS

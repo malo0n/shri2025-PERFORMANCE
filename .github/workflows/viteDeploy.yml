@@ -36,6 +36,8 @@ jobs:
         uses: actions/configure-pages@v5
       - name: Build Next.js static export
         run: npm run build
+        env:
+          PAGES_BASE_PATH: ${{ steps.setup_pages.outputs.base_path }}
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Restore cache
