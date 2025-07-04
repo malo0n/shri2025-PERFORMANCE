@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { TABS } from "../../const";
-import { Event } from "components/Event/Event";
+import { Event } from "../../components/Event/Event";
 import "./Main.css";
 
 
