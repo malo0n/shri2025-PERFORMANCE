@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export', // Use static export
-  // basePath: process.env.BASE_URL, // Base path for the app
+  basePath: process.env.BASE_URL, // Base path for the app
   reactStrictMode: true, // Enable React strict mode
   experimental: {
     optimizeCss: true, // Optimize and minify CSS
