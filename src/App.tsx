@@ -5,8 +5,10 @@ import { Main } from "./components/Main/Main";
 export function App() {
   return (
     <>
-      <Header />
-      <Main />
+      <div className="mainWrapper">
+        <Header />
+        <Main />
+      </div>
       <Footer />
     </>
   );
